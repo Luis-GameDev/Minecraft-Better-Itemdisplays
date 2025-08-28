@@ -1,0 +1,8 @@
+# Add additional command-aliases with this setting
+command-aliases:
+  - display
+  - id
+  - itemdisplay
+
+max-item-scale: 2
+max-item-move: 1

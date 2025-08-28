@@ -1,0 +1,17 @@
+name: BetterItemDisplays
+main: me.luisgamedev.betterItemDisplays.BetterItemDisplays
+version: 1.0
+api-version: 1.20
+author: LuisTTV
+description: Plugin for placing items on the ground
+commands:
+  display:
+    description: Main command for placing items
+    usage: /<command> <place|pickup|edit>
+    aliases: [id, itemdisplay]
+    permission: betteritemdisplays.use
+permissions:
+  betteritemdisplays.use:
+    default: true
+  betteritemdisplays.admin:
+    default: op
