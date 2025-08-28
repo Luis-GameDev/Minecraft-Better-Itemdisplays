@@ -74,7 +74,7 @@ public class PlaceItem {
                     .rotateY((float) Math.toRadians(180));
             baseRot = new Quaternionf(lookOut).mul(modelFix);
         } else {
-            double eps = 0.001;
+            double eps = 0.001; 
             placePos = hitPos.clone().add(normal.x * eps, normal.y * eps, normal.z * eps);
             baseRot = flatRotationForFace(face);
         }
