@@ -20,6 +20,8 @@ public class PickupItem {
     public boolean execute(Player p, String[] args) {
         LanguageManager lang = BetterItemDisplays.getInstance().getLang();
 
+        if (!p.hasPermission("betteritemdisplays.pickup")) { p.sendMessage(lang.get("no-permission")); return true; }
+
         ItemDisplay target = getTargetDisplay(p);
         if (target == null) {
             p.sendMessage(lang.get("must-target-display"));

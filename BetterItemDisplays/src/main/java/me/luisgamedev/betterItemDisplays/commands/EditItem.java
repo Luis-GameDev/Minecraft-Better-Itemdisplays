@@ -27,9 +27,9 @@ public class EditItem {
         lang = BetterItemDisplays.getInstance().getLang();
 
         if (args.length == 0) {
-            p.sendMessage("§e/display edit rotation <dX> <dY> <dZ>");
-            p.sendMessage("§e/display edit scale <value>");
-            p.sendMessage("§e/display edit move <dx> <dy> <dz>");
+            p.sendMessage(lang.get("missing-parameters-rotation"));
+            p.sendMessage(lang.get("missing-parameters-scale"));
+            p.sendMessage(lang.get("missing-parameters-move"));
             return true;
         }
 
@@ -40,19 +40,24 @@ public class EditItem {
         String type = args[0].toLowerCase();
 
         if (type.equals("rotation")) {
-            if (args.length < 4) { p.sendMessage("§e/display edit rotation <dX> <dY> <dZ>"); return true; }
+            if (args.length < 4) { p.sendMessage(lang.get("missing-parameters-rotation")); return true; }
             double dx, dy, dz;
             try { dx = Double.parseDouble(args[1]); dy = Double.parseDouble(args[2]); dz = Double.parseDouble(args[3]); }
             catch (Exception e) { p.sendMessage(lang.get("invalid-rotation")); return true; }
 
             Transformation t = target.getTransformation();
-            Quaternionf left = new Quaternionf(t.getLeftRotation());
-            Quaternionf delta = new Quaternionf()
-                    .rotateXYZ((float) Math.toRadians(dx), (float) Math.toRadians(dy), (float) Math.toRadians(dz));
-            left.mul(delta);
+            Quaternionf current = new Quaternionf(t.getLeftRotation());
+
+            Quaternionf deltaWorld = new Quaternionf()
+                    .rotateX((float) Math.toRadians(dx))
+                    .rotateY((float) Math.toRadians(dy))
+                    .rotateZ((float) Math.toRadians(dz));
+
+            Quaternionf newLeft = new Quaternionf(deltaWorld).mul(current);
+
             target.setTransformation(new Transformation(
                     new Vector3f(t.getTranslation()),
-                    left,
+                    newLeft,
                     new Vector3f(t.getScale()),
                     new Quaternionf(t.getRightRotation())
             ));
@@ -61,7 +66,7 @@ public class EditItem {
         }
 
         if (type.equals("scale")) {
-            if (args.length < 2) { p.sendMessage("§e/display edit scale <value>"); return true; }
+            if (args.length < 2) { p.sendMessage(lang.get("missing-parameters-scale")); return true; }
             double s;
             try { s = Double.parseDouble(args[1]); } catch (Exception e) { p.sendMessage(lang.get("invalid-scale")); return true; }
             double maxScale = BetterItemDisplays.getInstance().getConfig().getDouble("max-item-scale", 2.0);
@@ -81,7 +86,7 @@ public class EditItem {
         }
 
         if (type.equals("move")) {
-            if (args.length < 4) { p.sendMessage("§e/display edit move <dx> <dy> <dz>"); return true; }
+            if (args.length < 4) { p.sendMessage(lang.get("missing-parameters-move")); return true; }
             double dx, dy, dz;
             try { dx = Double.parseDouble(args[1]); dy = Double.parseDouble(args[2]); dz = Double.parseDouble(args[3]); }
             catch (Exception e) { p.sendMessage(lang.get("invalid-move")); return true; }
