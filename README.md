@@ -1,4 +1,4 @@
-# 🪧 BetterItemDisplays – Advanced Item Display Plugin
+# 🛠 BetterItemDisplays – Advanced Item Display Plugin
 
 **BetterItemDisplays** is a Minecraft plugin that reimagines how players can display their items.  
 Using the new **vanilla Item Display entities** instead of armor stands, it allows players to **place, edit, and pick up items** in the world while fully respecting protection plugins like WorldGuard.  
@@ -9,7 +9,7 @@ If you have any questions or need help, feel free to join my Discord: https://di
 
 ### ✨ Features
 
-- 🪧 **Place Items Anywhere**  
+- 🪓 **Place Items Anywhere**  
   Use `/display place <scale> <stickInBlock>` to position items in the world:
   - Flat on a block surface  
   - Stuck into a block like an arrow  
